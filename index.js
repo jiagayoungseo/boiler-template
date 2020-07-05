@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
@@ -61,24 +61,16 @@ app.post('/api/users/login', (req, res) => {
           loginSuccess: false,
           message: '비밀번호가 틀렸습니다.',
         });
-      } else {
-        return res.json({
-          loginSuccess: true,
-        });
       }
 
-      /*
-      //비밀번호 까지 맞다면 토큰을 생성하기.
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
 
-        // 토큰을 저장한다.  어디에 ?  쿠키 , 로컳스토리지
         res
           .cookie('x_auth', user.token)
           .status(200)
-          .json({ loginSuccess: true, userId: user._id });
+          .json({ loginSuccess: true, userID: user._id });
       });
-      */
     });
   });
 });
